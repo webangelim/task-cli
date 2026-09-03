@@ -16,52 +16,63 @@ O projeto armazena todas as tarefas em um arquivo local chamado `tasks.json` no 
 
 ---
 
-## Compilacao
+## Compilacao e Execucao
 
-Para compilar o projeto com o Maven, execute o comando abaixo na raiz do repositorio:
+Voce pode compilar e executar o projeto de duas maneiras:
 
-```bash
-mvn clean compile
-```
+### Opcao 1: Usando javac diretamente (Mais simples)
 
-Caso queira gerar o pacote `.jar`:
+1. Navegue ate a pasta onde estao os arquivos `.java`:
+   ```bash
+   cd src/main/java
+   ```
 
-```bash
-mvn clean package
-```
+2. Compile os arquivos:
+   ```bash
+   javac *.java
+   ```
+
+3. Execute diretamente com `java Main`:
+   ```bash
+   java Main add "Comprar cafe"
+   ```
 
 ---
 
-## Como Executar
+### Opcao 2: Usando o Maven
 
-### Execucao direta com a JVM
+1. Na raiz do projeto, compile:
+   ```bash
+   mvn clean compile
+   ```
 
-Apos compilar com `mvn clean compile`, voce pode executar a classe `Main` passando os argumentos desejados:
-
-```bash
-java -cp target/classes Main <comando> [argumentos]
-```
-
-### Execucao via Maven Exec Plugin (opcional)
-
-```bash
-mvn compile exec:java -Dexec.mainClass="Main" -Dexec.args="<comando> [argumentos]"
-```
+2. Execute o programa:
+   - A partir da raiz do projeto:
+     ```bash
+     java -cp target/classes Main add "Comprar cafe"
+     ```
+   - Ou entrando no diretorio das classes compiladas:
+     ```bash
+     cd target/classes
+     java Main add "Comprar cafe"
+     ```
 
 ---
 
 ## Comandos Disponiveis
 
+Nos exemplos abaixo, considere a execucao com `java Main` (dentro de `src/main/java` ou `target/classes`) ou `java -cp target/classes Main` (a partir da raiz):
+
 ### 1. Adicionar uma nova tarefa (`add`)
 Cria uma nova tarefa com o status inicial `TODO`.
 
 ```bash
-java -cp target/classes Main add "Descricao da tarefa"
+java Main add "Descricao da tarefa"
 ```
 
 Exemplo:
 ```bash
-java -cp target/classes Main add "Comprar cafe"
+java Main add "Comprar cafe"
 # Saida: Task added successfully! (ID: 1)
 ```
 
@@ -71,12 +82,12 @@ java -cp target/classes Main add "Comprar cafe"
 Atualiza o texto da tarefa informada pelo ID e altera a data de atualizacao (`updatedAt`).
 
 ```bash
-java -cp target/classes Main update <id> "<nova descricao>"
+java Main update <id> "<nova descricao>"
 ```
 
 Exemplo:
 ```bash
-java -cp target/classes Main update 1 "Comprar cafe e acucar"
+java Main update 1 "Comprar cafe e acucar"
 # Saida: Task updated successfully! (ID: 1)
 ```
 
@@ -86,12 +97,12 @@ java -cp target/classes Main update 1 "Comprar cafe e acucar"
 Remove a tarefa correspondente ao ID informado do arquivo `tasks.json`.
 
 ```bash
-java -cp target/classes Main delete <id>
+java Main delete <id>
 ```
 
 Exemplo:
 ```bash
-java -cp target/classes Main delete 1
+java Main delete 1
 # Saida: Task deleted successfully! (ID: 1)
 ```
 
@@ -101,12 +112,12 @@ java -cp target/classes Main delete 1
 Muda o status da tarefa para `IN_PROGRESS`.
 
 ```bash
-java -cp target/classes Main mark-in-progress <id>
+java Main mark-in-progress <id>
 ```
 
 Exemplo:
 ```bash
-java -cp target/classes Main mark-in-progress 1
+java Main mark-in-progress 1
 # Saida: Task marked as in progress! (ID: 1)
 ```
 
@@ -116,12 +127,12 @@ java -cp target/classes Main mark-in-progress 1
 Muda o status da tarefa para `DONE`.
 
 ```bash
-java -cp target/classes Main mark-done <id>
+java Main mark-done <id>
 ```
 
 Exemplo:
 ```bash
-java -cp target/classes Main mark-done 1
+java Main mark-done 1
 # Saida: Task marked as done! (ID: 1)
 ```
 
@@ -131,22 +142,22 @@ java -cp target/classes Main mark-done 1
 
 - **Listar todas as tarefas:**
   ```bash
-  java -cp target/classes Main list
+  java Main list
   ```
 
 - **Listar apenas tarefas concluidas:**
   ```bash
-  java -cp target/classes Main list done
+  java Main list done
   ```
 
 - **Listar apenas tarefas pendentes:**
   ```bash
-  java -cp target/classes Main list todo
+  java Main list todo
   ```
 
 - **Listar apenas tarefas em andamento:**
   ```bash
-  java -cp target/classes Main list in-progress
+  java Main list in-progress
   ```
 
 ---
