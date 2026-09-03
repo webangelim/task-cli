@@ -2,6 +2,8 @@
 
 Aplicacao de linha de comando para gerenciamento de tarefas (Task Tracker) desenvolvida em Java nativo, sem o uso de bibliotecas externas para manipulacao ou persistencia de JSON.
 
+Repositorio: https://github.com/webangelim/task-cli
+
 O projeto armazena todas as tarefas em um arquivo local chamado `tasks.json` no mesmo diretorio de execucao.
 
 ---
